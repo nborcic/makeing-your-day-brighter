@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Making You'r day brighter</title>
+
+    <script src="https://unpkg.com/page-loaded-in@0.0.4/dist/index.js"></script>
+  </head>
+  <body>
+    <div class="display:flex;">
+      <div class="outlines">
+        <h3 class="pic">Whats you'r best one...I know they are all best :)</h3>
+        <img />
+      </div>
+    </div>
+
+    <p class="js-page-loaded-in"></p>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .outlines {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background-color: #f0f0f0;
+      }
+      .pic {
+        font-size: 2rem;
+        color: #333;
+        text-align: center;
+      }
+      img {
+        width: 50%;
+        height: 80%;
+        border-radius: 10px;
+      }
+    </style>
+    <script>
+      async function urSpiritAnimal() {
+        fetch("https://random.dog/woof.json")
+          .then((response) => response.json())
+
+          .then((data) => {
+            const img = document.querySelector("img");
+            img.src = data.url;
+            console.log(data);
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function repeat(timeOut = 5000) {
+        setTimeout(() => {
+          console.log("Loaded");
+          urSpiritAnimal();
+          repeat(timeOut);
+        }, timeOut);
+      }
+      repeat();
+    </script>
+  </body>
+</html>
